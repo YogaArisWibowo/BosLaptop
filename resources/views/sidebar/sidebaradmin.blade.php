@@ -5,8 +5,8 @@
             <span>ADMIN CONTROL</span>
         </div>
         <ul class="sidebar-menu">
-            <li class="{{ request()->is('produkpemilik') ? 'active' : '' }}">
-                <a href="{{ url('/produkpemilik') }}"><i class="fas fa-box"></i> Produk</a>
+            <li class="{{ request()->is('produkadmin') ? 'active' : '' }}">
+                <a href="{{ url('/produkadmin') }}"><i class="fas fa-box"></i> Produk</a>
             </li>
             
             <li class="{{ request()->is('pesananpemilik') ? 'active' : '' }}">

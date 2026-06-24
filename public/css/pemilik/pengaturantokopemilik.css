@@ -1,0 +1,352 @@
+/* --- Header Tambahan --- */
+.header-with-subtitle {
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+.subtitle {
+    color: #6B7280;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* --- Grid Layout Utama --- */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr; /* Kolom kiri lebih besar dari kanan */
+    gap: 24px;
+}
+
+.settings-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.settings-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Style Dasar Kartu --- */
+.setting-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #F3F4F6;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.card-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.sub-heading {
+    font-size: 11px;
+    color: #9CA3AF;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Warna Bantuan */
+.bg-red-light { background: #FEE2E2; }
+.bg-red-verylight { background: #FEF2F2; }
+.text-red { color: #DC2626; }
+.text-purple { color: #9333EA; }
+.text-gray { color: #9CA3AF; }
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* --- Form Styles --- */
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #DC2626; /* Merah untuk label sesuai desain */
+    letter-spacing: 0.5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    color: #374151;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: #EF4444;
+    background: white;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+/* Input dengan Icon di dalamnya */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-with-icon i {
+    position: absolute;
+    left: 16px;
+    color: #6B7280;
+}
+.input-with-icon input {
+    padding-left: 42px; /* Memberi ruang untuk icon */
+}
+
+/* Wrapper Select untuk tanda panah */
+.select-wrapper {
+    position: relative;
+}
+.select-wrapper::after {
+    content: "\f107"; /* Unicode FontAwesome down arrow */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6B7280;
+    pointer-events: none;
+}
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Tombol Form */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.btn-reset {
+    background: transparent;
+    border: none;
+    color: #111827;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.btn-save {
+    background: #BE123C;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-save:hover {
+    background: #9F1239;
+}
+
+/* --- Lokasi Toko (Map) --- */
+.badge-status {
+    background: #FEE2E2;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+}
+.map-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 250px;
+}
+.map-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.map-overlay {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Jam Operasional (Kanan) --- */
+.card-schedule {
+    border: 2px solid #E9D5FF;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #F9FAFB;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+}
+.schedule-item.active {
+    background: #F4F6FF;
+    border-color: #E0E7FF;
+}
+.schedule-item.disabled {
+    background: white;
+    opacity: 0.6;
+}
+
+/* Custom Checkbox Simple */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.time-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.time-range input {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    background: white;
+}
+
+.status-closed {
+    font-size: 11px;
+    font-weight: 700;
+    color: #EF4444;
+}
+
+.btn-dashed-purple {
+    width: 100%;
+    background: transparent;
+    border: 2px dashed #C084FC;
+    color: #9333EA;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-dashed-purple:hover {
+    background: #F3E8FF;
+}
+
+/* --- Store Banner --- */
+.banner-preview {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 120px;
+    margin-bottom: 12px;
+}
+.banner-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.helper-text {
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.5;
+}
+
+/* --- Area Berbahaya --- */
+.danger-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.danger-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+.btn-outline-red {
+    width: 100%;
+    margin-top: 16px;
+    background: transparent;
+    border: 1px solid #DC2626;
+    color: #DC2626;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-outline-red:hover {
+    background: #FEE2E2;
+}

@@ -20,5 +20,14 @@ Route::get('/pesananpemilik', function () {
 Route::get('/laporankeuanganpemilik', function () {
     return view('LaporankeuanganPemilik');
 });
+Route::get('/penggunapemilik', function () {
+    return view('Penggunapemilik');
+});
+Route::get('/pengaturantokopemilik', function () {
+    return view('Pengaturantokopemilik');
+});
+Route::get('/produkadmin', function () {
+    return view('ProdukAdmin');
+});
 
     
