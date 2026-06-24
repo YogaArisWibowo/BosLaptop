@@ -53,7 +53,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>NAMA TOKO</label>
-                                        <input type="text" value="BosLaptop Official Jakarta">
+                                        <input type="text" value="BosLaptop Official Yogyakarta">
                                     </div>
                                     <div class="form-group">
                                         <label>KATEGORI UTAMA</label>

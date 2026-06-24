@@ -29,5 +29,11 @@ Route::get('/pengaturantokopemilik', function () {
 Route::get('/produkadmin', function () {
     return view('ProdukAdmin');
 });
+Route::get('/pesananadmin', function () {
+    return view('PesananAdmin');
+});
+Route::get('/laporankeuanganadmin', function () {
+    return view('LaporankeuanganAdmin');
+});
 
     

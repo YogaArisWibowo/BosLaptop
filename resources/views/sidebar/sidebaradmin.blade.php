@@ -9,21 +9,14 @@
                 <a href="{{ url('/produkadmin') }}"><i class="fas fa-box"></i> Produk</a>
             </li>
             
-            <li class="{{ request()->is('pesananpemilik') ? 'active' : '' }}">
-                <a href="{{ url('/pesananpemilik') }}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+            <li class="{{ request()->is('pesananadmin') ? 'active' : '' }}">
+                <a href="{{ url('/pesananadmin') }}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
             </li>
             
-            <li class="{{ request()->is('laporankeuanganpemilik') ? 'active' : '' }}">
-                <a href="{{ url('/laporankeuanganpemilik') }}"><i class="fas fa-wallet"></i> Laporan Keuangan</a>
+            <li class="{{ request()->is('laporankeuanganadmin') ? 'active' : '' }}">
+                <a href="{{ url('/laporankeuanganadmin') }}"><i class="fas fa-wallet"></i> Laporan Keuangan</a>
             </li>
-            
-            <li class="{{ request()->is('penggunapemilik') ? 'active' : '' }}">
-                <a href="{{ url('/penggunapemilik') }}"><i class="fas fa-users"></i> Pengguna</a>
-            </li>
-            
-            <li class="{{ request()->is('pengaturantokopemilik') ? 'active' : '' }}">
-                <a href="{{ url('/pengaturantokopemilik') }}"><i class="fas fa-cog"></i> Pengaturan Toko</a>
-            </li>
+        
         </ul>
     </div>
     

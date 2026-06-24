@@ -2,7 +2,7 @@
     <div>
         <div class="sidebar-header">
             <h2>BosLaptop</h2>
-            <span>ADMIN CONTROL</span>
+            <span>PEMILIK CONTROL</span>
         </div>
         <ul class="sidebar-menu">
             <li class="{{ request()->is('produkpemilik') ? 'active' : '' }}">
