@@ -1,0 +1,98 @@
+/* Tambahan untuk Halaman Laporan Keuangan */
+.header-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-outline-purple {
+    background-color: transparent;
+    color: #9333EA;
+    border: 1px solid #9333EA;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-outline-purple:hover {
+    background-color: #F3E8FF;
+}
+
+.stats-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.bg-blue-light { 
+    background: #E0F2FE; 
+    color: #0284C7; 
+}
+
+.table-title {
+    padding: 24px 24px 0 24px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.badge-gray {
+    background: #F3F4F6;
+    color: #4B5563;
+    padding: 4px 10px;
+    border-radius: 6px; /* Sesuai gambar, sedikit lebih kotak */
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.text-green { color: #10B981; font-weight: 700; }
+.text-red { color: #EF4444; font-weight: 700; }
+.text-black { color: #111827; font-weight: 700; }
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pill.success {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.status-pill.success .status-dot {
+    background: #10B981;
+}
+
+.status-pill.pending {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.status-pill.pending .status-dot {
+    background: #F59E0B;
+}
+
+/* Mengatur perataan teks untuk kolom nominal */
+.text-right {
+    text-align: right;
+}
+
+/* Perbaikan untuk posisi tombol aksi agar selalu bersebelahan */
+.action-btns {
+    display: flex;
+    gap: 8px; /* Memberi jarak antara tombol edit dan hapus */
+    align-items: center;
+    justify-content: flex-start; /* Sejajarkan ke kiri, atau ubah 'center' jika ingin di tengah */
+    flex-wrap: nowrap; /* Kunci rahasianya: Mencegah tombol turun ke baris baru */
+    white-space: nowrap; /* Mencegah elemen di dalam sel tabel turun ke bawah */
+}   
