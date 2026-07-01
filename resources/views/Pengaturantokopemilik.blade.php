@@ -31,7 +31,7 @@
                 <div class="page-header header-with-subtitle">
                     <div>
                         <h1>Pengaturan Toko</h1>
-                        <p class="subtitle">Manage your store's core identity, physical location, and operational scheduling.</p>
+                        <p class="subtitle">Kelola Identitas Utama, Lokasi, dan Jadwal Operasional Toko Anda.</p>
                     </div>
                 </div>
 
@@ -178,14 +178,14 @@
                             <p class="helper-text">Recommended size: 1920x400px. Supports PNG, JPG, WebP. Max size 2MB.</p>
                         </div>
 
-                        <div class="setting-card bg-red-verylight">
+                        {{-- <div class="setting-card bg-red-verylight">
                             <div class="danger-header">
                                 <i class="fas fa-exclamation-triangle text-red"></i>
                                 <h2>Area Berbahaya</h2>
                             </div>
                             <p class="helper-text">Actions here cannot be undone. Be certain before proceeding.</p>
                             <button class="btn-outline-red">NONAKTIFKAN TOKO SEMENTARA</button>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>

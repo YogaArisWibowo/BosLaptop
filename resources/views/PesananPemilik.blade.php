@@ -37,22 +37,22 @@
                 <div class="page-header">
                     <div>
                         <h1>Manajemen Pesanan</h1>
-                        <p>Monitor and manage high-performance hardware transactions.</p>
+                        <p>Pantau dan Kelola Transaksi BosLaptop</p>
                     </div>
-                    <button class="btn-add">
+                    {{-- <button class="btn-add">
                         <i class="fas fa-plus"></i> New Order
-                    </button>
+                    </button> --}}
                 </div>
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <h3>REVENUE</h3>
+                        <h3>PENDAPATAN</h3>
                         <div class="value">$124,592.00</div>
                         <span class="trend-up"><i class="fas fa-arrow-up"></i> +12.5%</span>
                     </div>
 
                     <div class="stat-card">
-                        <h3>ACTIVE ORDERS</h3>
+                        <h3>PEMESANAN AKTIF</h3>
                         <div class="value">412</div>
                         <span class="status-stable"><i class="fas fa-sync"></i> Stable</span>
                     </div>
@@ -63,14 +63,14 @@
                         <span class="trend-down"><i class="fas fa-arrow-down"></i> -2%</span>
                     </div>
 
-                    <div class="stat-card system-health">
+                    {{-- <div class="stat-card system-health">
                         <div class="health-content">
                             <h3>SYSTEM HEALTH</h3>
                             <span class="status-text">Optimal</span>
                             <p class="latency">Processing latency: 45ms</p>
                         </div>
                         <i class="fas fa-bolt health-icon-bg"></i>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="table-container">
@@ -92,8 +92,9 @@
                                 <th>NAMA</th>
                                 <th>KATEGORI</th>
                                 <th>HARGA</th>
-                                <th>STOK</th>
+                                <th>JUMLAH</th>
                                 <th>STATUS</th>
+                                <th>NO RESI</th>
                                 <th>AKSI</th>
                             </tr>
                         </thead>
@@ -103,53 +104,16 @@
                                     <div class="product-info">
                                         <img src="https://via.placeholder.com/48" alt="Laptop">
                                         <div class="product-details">
-                                            <h4>BosMaster Pro X15</h4>
-                                            <span>SKU: BM-PX15-2024</span>
+                                            <h4>Titan Studio Z</h4>
+                                            <span>SKU: TS-Z17-CREATOR</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$2,499.00</strong></td>
-                                <td>42 Units</td>
-                                <td><span class="status-dot tersedia"></span> In Stock</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>HyperBlade Elite</h4>
-                                            <span>SKU: HB-ELT14-BLK</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-gaming">GAMING</span></td>
-                                <td><strong>$1,899.00</strong></td>
-                                <td>12 Units</td>
-                                <td><span class="status-dot hampir-habis"></span> Low Stock</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>AeroAir Ultrabook</h4>
-                                            <span>SKU: AA-ULT13-WHT</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-portable">PORTABLE</span></td>
-                                <td><strong>$1,250.00</strong></td>
-                                <td>0 Units</td>
-                                <td><span class="status-dot habis"></span> Out of Stock</td>
+                                <td><strong>$3,199.00</strong></td>
+                                <td>18 Units</td>
+                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
+                                <td>TRK-789012</td>
                                 <td class="action-btns">
                                     <button><i class="fas fa-pen"></i></button>
                                     <button><i class="fas fa-trash"></i></button>
@@ -168,7 +132,48 @@
                                 <td><span class="badge badge-workstation">WORKSTATION</span></td>
                                 <td><strong>$3,199.00</strong></td>
                                 <td>18 Units</td>
-                                <td><span class="status-dot tersedia"></span> In Stock</td>
+                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
+                                <td>TRK-789012</td>
+                                <td class="action-btns">
+                                    <button><i class="fas fa-pen"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://via.placeholder.com/48" alt="Laptop">
+                                        <div class="product-details">
+                                            <h4>Titan Studio Z</h4>
+                                            <span>SKU: TS-Z17-CREATOR</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
+                                <td><strong>$3,199.00</strong></td>
+                                <td>18 Units</td>
+                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
+                                <td>TRK-789012</td>
+                                <td class="action-btns">
+                                    <button><i class="fas fa-pen"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://via.placeholder.com/48" alt="Laptop">
+                                        <div class="product-details">
+                                            <h4>Titan Studio Z</h4>
+                                            <span>SKU: TS-Z17-CREATOR</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
+                                <td><strong>$3,199.00</strong></td>
+                                <td>18 Units</td>
+                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
+                                <td>TRK-789012</td>
                                 <td class="action-btns">
                                     <button><i class="fas fa-pen"></i></button>
                                     <button><i class="fas fa-trash"></i></button>
@@ -178,7 +183,7 @@
                     </table>
 
                     <div class="table-footer">
-                        <span>Showing 4 of 128 transactions</span>
+                        <span>Showing 10 of 128 transactions</span>
                         <div class="pagination">
                             <button><i class="fas fa-chevron-left"></i></button>
                             <button class="active">1</button>

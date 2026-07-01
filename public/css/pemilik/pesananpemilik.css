@@ -40,3 +40,13 @@
 .trend-up { color: #10B981; font-size: 12px; font-weight: 600; }
 .trend-down { color: #EF4444; font-size: 12px; font-weight: 600; }
 .status-stable { color: #0891B2; font-size: 12px; font-weight: 600; }
+
+/* Perbaikan untuk posisi tombol aksi agar selalu bersebelahan */
+.action-btns {
+    display: flex;
+    gap: 8px; /* Memberi jarak antara tombol edit dan hapus */
+    align-items: center;
+    justify-content: flex-start; /* Sejajarkan ke kiri, atau ubah 'center' jika ingin di tengah */
+    flex-wrap: nowrap; /* Kunci rahasianya: Mencegah tombol turun ke baris baru */
+    white-space: nowrap; /* Mencegah elemen di dalam sel tabel turun ke bawah */
+}   

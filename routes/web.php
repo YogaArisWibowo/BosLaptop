@@ -35,5 +35,10 @@ Route::get('/pesananadmin', function () {
 Route::get('/laporankeuanganadmin', function () {
     return view('LaporankeuanganAdmin');
 });
-
+Route::get('/produkpelanggan', function () {
+    return view('ProdukPelanggan');
+});
+Route::get('/keranjangpelanggan', function () {
+    return view('KeranjangPelanggan');
+});
     

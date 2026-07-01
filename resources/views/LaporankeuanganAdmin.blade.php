@@ -153,7 +153,7 @@
                     </table>
 
                     <div class="table-footer">
-                        <span>Showing 4 of 128 transactions</span>
+                        <span>Tampil 4 dari 128 Transaksi</span>
                         <div class="pagination">
                             <button><i class="fas fa-chevron-left"></i></button>
                             <button class="active">1</button>

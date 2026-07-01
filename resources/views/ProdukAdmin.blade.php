@@ -31,10 +31,10 @@
                 <div class="page-header">
                     <div>
                         <h1>Manajemen Produk</h1>
-                        <p>Monitor, edit, and manage your high-performance laptop fleet.</p>
+                        <p>Kelola Produk Laptop Anda</p>
                     </div>
                     <button class="btn-add" id="addProductBtn">
-                        <i class="fas fa-plus"></i> Add New Product
+                        <i class="fas fa-plus"></i> Tambah Produk Baru
                     </button>
                 </div>
 
@@ -47,19 +47,19 @@
                         <h3>PRODUK TERSEDIA</h3>
                         <div class="value">1,284 Unit</div>
                     </div>
-                    
+
                     <div class="stat-card">
                         <div class="stat-icon bg-purple-light">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <span class="badge-top-right badge-purple">LIVE</span>
-                        <h3>ACTIVE LISTINGS</h3>
+                        <h3>Daftar Aktif</h3>
                         <div class="value">942 Pro</div>
                     </div>
 
                     <div class="stat-card system-perf">
-                        <h3>System Performance</h3>
-                        <p>Real-time inventory sync is active across all global data centers.</p>
+                        <h3>Sistem Sinkronisasi </h3>
+                        <p>inventaris secara real-time aktif di seluruh pusat data global</p>
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@
                     </table>
 
                     <div class="table-footer">
-                        <span>Showing 4 of 128 transactions</span>
+                        <span>Tampil 10 dari 128 Transaksi</span>
                         <div class="pagination">
                             <button><i class="fas fa-chevron-left"></i></button>
                             <button class="active">1</button>
@@ -261,7 +261,7 @@
         document.addEventListener('click', function(event) {
             const isClickInsideSidebar = sidebar.contains(event.target);
             const isClickInsideToggle = sidebarToggle.contains(event.target);
-            
+
             if (!isClickInsideSidebar && !isClickInsideToggle && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
                 appContainer.classList.remove('sidebar-open');
@@ -302,4 +302,5 @@
         });
     </script>
 </body>
+
 </html>

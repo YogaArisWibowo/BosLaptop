@@ -467,6 +467,15 @@ td {
     overflow-y: auto;
     animation: slideIn 0.3s ease;
 }
+/* Perbaikan untuk posisi tombol aksi agar selalu bersebelahan */
+.action-btns {
+    display: flex;
+    gap: 8px; /* Memberi jarak antara tombol edit dan hapus */
+    align-items: center;
+    justify-content: flex-start; /* Sejajarkan ke kiri, atau ubah 'center' jika ingin di tengah */
+    flex-wrap: nowrap; /* Kunci rahasianya: Mencegah tombol turun ke baris baru */
+    white-space: nowrap; /* Mencegah elemen di dalam sel tabel turun ke bawah */
+}   
 
 @keyframes slideIn {
     from {
