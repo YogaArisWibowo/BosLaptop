@@ -6,8 +6,8 @@
 
 .btn-outline-purple {
     background-color: transparent;
-    color: #9333EA;
-    border: 1px solid #9333EA;
+    color: #9333ea;
+    border: 1px solid #9333ea;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: 600;
@@ -19,7 +19,7 @@
 }
 
 .btn-outline-purple:hover {
-    background-color: #F3E8FF;
+    background-color: #f3e8ff;
 }
 
 .stats-grid-3 {
@@ -29,9 +29,9 @@
     margin-bottom: 32px;
 }
 
-.bg-blue-light { 
-    background: #E0F2FE; 
-    color: #0284C7; 
+.bg-blue-light {
+    background: #e0f2fe;
+    color: #0284c7;
 }
 
 .table-title {
@@ -42,8 +42,8 @@
 }
 
 .badge-gray {
-    background: #F3F4F6;
-    color: #4B5563;
+    background: #f3f4f6;
+    color: #4b5563;
     padding: 4px 10px;
     border-radius: 6px; /* Sesuai gambar, sedikit lebih kotak */
     font-size: 11px;
@@ -51,9 +51,18 @@
     text-transform: uppercase;
 }
 
-.text-green { color: #10B981; font-weight: 700; }
-.text-red { color: #EF4444; font-weight: 700; }
-.text-black { color: #111827; font-weight: 700; }
+.text-green {
+    color: #10b981;
+    font-weight: 700;
+}
+.text-red {
+    color: #ef4444;
+    font-weight: 700;
+}
+.text-black {
+    color: #111827;
+    font-weight: 700;
+}
 
 .status-pill {
     display: inline-flex;
@@ -65,21 +74,21 @@
 }
 
 .status-pill.success {
-    background: #D1FAE5;
-    color: #065F46;
+    background: #d1fae5;
+    color: #065f46;
 }
 
 .status-pill.success .status-dot {
-    background: #10B981;
+    background: #10b981;
 }
 
 .status-pill.pending {
-    background: #FEF3C7;
-    color: #92400E;
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .status-pill.pending .status-dot {
-    background: #F59E0B;
+    background: #f59e0b;
 }
 
 /* Mengatur perataan teks untuk kolom nominal */
@@ -95,4 +104,92 @@
     justify-content: flex-start; /* Sejajarkan ke kiri, atau ubah 'center' jika ingin di tengah */
     flex-wrap: nowrap; /* Kunci rahasianya: Mencegah tombol turun ke baris baru */
     white-space: nowrap; /* Mencegah elemen di dalam sel tabel turun ke bawah */
-}   
+}
+
+/* CSS Tambahan untuk penanganan Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.modal.active {
+    display: flex;
+}
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.modal-header h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #1f2937;
+}
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #9ca3af;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #374151;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+.btn-cancel {
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.btn-submit {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
