@@ -41,4 +41,10 @@ Route::get('/produkpelanggan', function () {
 Route::get('/keranjangpelanggan', function () {
     return view('KeranjangPelanggan');
 });
+Route::get('/profilpengguna', function () {
+    return view('ProfilPengguna');
+});
+Route::get('/riwayattransaksi', function () {
+    return view('RiwayatTransaksiPengguna');
+});
     

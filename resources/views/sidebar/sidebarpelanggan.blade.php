@@ -15,14 +15,14 @@
             </a>
         </li>
 
-        <li class="{{ request()->is('profil') ? 'active' : '' }}">
-            <a href="{{ url('/profil') }}">
+        <li class="{{ request()->is('profilpengguna') ? 'active' : '' }}">
+            <a href="{{ url('/profilpengguna') }}">
                 <i class="far fa-user-circle"></i> Profil Pengguna
             </a>
         </li>
 
-        <li class="{{ request()->is('riwayat') ? 'active' : '' }}">
-            <a href="{{ url('/riwayat') }}">
+        <li class="{{ request()->is('riwayattransaksi') ? 'active' : '' }}">
+            <a href="{{ url('/riwayattransaksi') }}">
                 <i class="fas fa-history"></i> Riwayat Transaksi
             </a>
         </li>
