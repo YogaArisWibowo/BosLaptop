@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajemen Pesanan - BosLaptop</title>
-    
+
     <link rel="stylesheet" href="{{ asset('css/pemilik/produkpemilik.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('css/pemilik/pesananpemilik.css') }}">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -19,182 +19,175 @@
         @include('sidebar.sidebarpemilik')
 
         <main class="main-content">
-            <header class="topbar">
-                <button class="hamburger-btn" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cari Pesanan Produk">
-                </div>
-                <div class="topbar-icons">
-                    <i class="far fa-bell"></i>
-                    <i class="far fa-question-circle"></i>
-                </div>
-            </header>
-
-            <div class="dashboard-content">
-                <div class="page-header">
-                    <div>
-                        <h1>Manajemen Pesanan</h1>
-                        <p>Pantau dan Kelola Transaksi BosLaptop</p>
+            <div class="page-content">
+                <header class="topbar">
+                    <button class="hamburger-btn" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari Pesanan Produk">
                     </div>
-                    {{-- <button class="btn-add">
-                        <i class="fas fa-plus"></i> New Order
-                    </button> --}}
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>PENDAPATAN</h3>
-                        <div class="value">$124,592.00</div>
-                        <span class="trend-up"><i class="fas fa-arrow-up"></i> +12.5%</span>
+                    <div class="topbar-icons">
+                        <i class="far fa-bell"></i>
+                        <i class="far fa-question-circle"></i>
                     </div>
+                </header>
 
-                    <div class="stat-card">
-                        <h3>PEMESANAN AKTIF</h3>
-                        <div class="value">412</div>
-                        <span class="status-stable"><i class="fas fa-sync"></i> Stable</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <h3>RETURNS</h3>
-                        <div class="value">3</div>
-                        <span class="trend-down"><i class="fas fa-arrow-down"></i> -2%</span>
-                    </div>
-
-                    {{-- <div class="stat-card system-health">
-                        <div class="health-content">
-                            <h3>SYSTEM HEALTH</h3>
-                            <span class="status-text">Optimal</span>
-                            <p class="latency">Processing latency: 45ms</p>
+                <div class="dashboard-content">
+                    <div class="page-header">
+                        <div>
+                            <h1>Manajemen Pesanan</h1>
+                            <p>Pantau dan Kelola Transaksi BosLaptop</p>
                         </div>
-                        <i class="fas fa-bolt health-icon-bg"></i>
-                    </div> --}}
-                </div>
-
-                <div class="table-container">
-                    <div class="table-filters">
-                        <div class="filter-group">
-                            <select>
-                                <option>Filter: Semua Kategori</option>
-                            </select>
-                            <select>
-                                <option>Status: All</option>
-                            </select>
-                        </div>
-                        <span class="filter-info">Tampil 1-10 dari 128 produk</span>
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>NAMA</th>
-                                <th>KATEGORI</th>
-                                <th>HARGA</th>
-                                <th>JUMLAH</th>
-                                <th>STATUS</th>
-                                <th>NO RESI</th>
-                                <th>AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>Titan Studio Z</h4>
-                                            <span>SKU: TS-Z17-CREATOR</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$3,199.00</strong></td>
-                                <td>18 Units</td>
-                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
-                                <td>TRK-789012</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>Titan Studio Z</h4>
-                                            <span>SKU: TS-Z17-CREATOR</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$3,199.00</strong></td>
-                                <td>18 Units</td>
-                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
-                                <td>TRK-789012</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>Titan Studio Z</h4>
-                                            <span>SKU: TS-Z17-CREATOR</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$3,199.00</strong></td>
-                                <td>18 Units</td>
-                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
-                                <td>TRK-789012</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>Titan Studio Z</h4>
-                                            <span>SKU: TS-Z17-CREATOR</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$3,199.00</strong></td>
-                                <td>18 Units</td>
-                                <td><span class="status-dot tersedia"></span>  Proses Pengiriman</td>
-                                <td>TRK-789012</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Notifikasi Alert Berhasil -->
+                    @if (session('success'))
+                        <div
+                            style="background-color: #d1e7dd; color: #0f5132; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-weight: bold;">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-                    <div class="table-footer">
-                        <span>Showing 10 of 128 transactions</span>
-                        <div class="pagination">
-                            <button><i class="fas fa-chevron-left"></i></button>
-                            <button class="active">1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button><i class="fas fa-chevron-right"></i></button>
+                    <div class="table-container">
+                        <div class="table-filters">
+                            <div class="filter-group">
+                                <select>
+                                    <option>Filter: Semua Kategori</option>
+                                </select>
+                                <select>
+                                    <option>Status: All</option>
+                                </select>
+                            </div>
+                            <span class="filter-info">Tampil
+                                {{ $pesanan->firstItem() ?? 0 }}-{{ $pesanan->lastItem() ?? 0 }} dari
+                                {{ $pesanan->total() }} pesanan</span>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>NAMA</th>
+                                    <th>TOTAL BAYAR</th>
+                                    <th>JUMLAH</th>
+                                    <th>STATUS</th>
+                                    <th>NO RESI</th>
+                                    <th>BUKTI KIRIM</th>
+                                    <th>AKSI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($pesanan as $order)
+                                    <tr>
+                                        <td>
+                                            <div class="product-info">
+                                                @if ($order->keranjang->isNotEmpty() && $order->keranjang->first()->produk && $order->keranjang->first()->produk->gambar)
+                                                    <img src="{{ asset('storage/' . $order->keranjang->first()->produk->gambar) }}"
+                                                        alt="Laptop">
+                                                @else
+                                                    <img src="https://via.placeholder.com/48" alt="Laptop">
+                                                @endif
+
+                                                <div class="product-details">
+                                                    <h4>
+                                                        @if ($order->keranjang->isNotEmpty())
+                                                            @foreach ($order->keranjang as $detail)
+                                                                {{ $detail->produk->nama ?? 'Produk Tidak Ditemukan' }}{{ !$loop->last ? ', ' : '' }}
+                                                            @endforeach
+                                                        @else
+                                                            Tidak Ada Produk
+                                                        @endif
+                                                    </h4>
+                                                    <span>Oleh:
+                                                        {{ $order->pelanggan->nama_pelanggan ?? ($order->pelanggan->nama ?? 'Guest') }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td><strong>Rp {{ number_format($order->total_bayar, 0, ',', '.') }}</strong>
+                                        </td>
+                                        <td>{{ $order->keranjang->sum('jumlah') }} Item</td>
+                                        <td><span class="status-dot tersedia"></span> {{ $order->status_bayar }}</td>
+                                        <td>{{ $order->no_resi ?? '0' }}</td>
+
+                                        {{-- KOLOM BUKTI KIRIM --}}
+                                        <td>
+                                            @if ($order->bukti_kirim)
+                                                <a href="{{ asset('storage/' . $order->bukti_kirim) }}"
+                                                    target="_blank">
+                                                    <img src="{{ asset('storage/' . $order->bukti_kirim) }}"
+                                                        alt="Bukti Kirim"
+                                                        style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;">
+                                                </a>
+                                            @else
+                                                <span style="color: #999; font-size: 0.85em;">Belum ada</span>
+                                            @endif
+                                        </td>
+
+                                        {{-- KOLOM AKSI (Membuka Modal) - SUDAH DIPERBAIKI --}}
+                                        <td>
+                                            <div class="action-btns">
+                                                <button type="button" class="btn-edit" title="Edit Pesanan"
+                                                    data-id="{{ $order->id_checkout }}"
+                                                    data-pelanggan="{{ $order->pelanggan->nama_pelanggan ?? ($order->pelanggan->nama ?? 'Guest') }}"
+                                                    data-resi="{{ $order->no_resi }}">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; padding: 20px; color: #999;">
+                                            Belum ada pesanan masuk ke sistem.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+
+                        <div class="table-footer">
+                            <span>Showing {{ $pesanan->firstItem() ?? 0 }} to {{ $pesanan->lastItem() ?? 0 }} of
+                                {{ $pesanan->total() }} transactions</span>
+                            <div class="pagination">
+                                {{ $pesanan->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+    </div>
+    </main>
+    </div>
+
+    <!-- STRUKTUR HTML MODAL EDIT PESANAN (Kini Hanya Resi & Bukti Kirim) -->
+    <div id="editPesananModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal-btn">&times;</span>
+            <h2>Edit Resi & Bukti Kirim</h2>
+            <p id="modal-sub-title" style="color: #666; margin-bottom: 20px; font-size: 14px;"></p>
+
+            <form id="formEditPesanan" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="modal-form-group">
+                    <label for="modal_no_resi">Nomor Resi Pengiriman</label>
+                    <input type="text" name="no_resi" id="modal_no_resi"
+                        placeholder="Masukkan nomor resi jika sudah dikirim">
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="modal_bukti_kirim">Upload Bukti Kirim / Resi Fisik</label>
+                    <input type="file" name="bukti_kirim" id="modal_bukti_kirim" accept="image/*">
+                    <small style="color: #888; font-size: 11px; display: block; margin-top: 4px;">Format file: JPG,
+                        JPEG, PNG (Maks. 2MB)</small>
+                </div>
+
+                <button type="submit" class="modal-btn-submit">Simpan Perubahan</button>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -202,12 +195,19 @@
         const sidebar = document.querySelector('.sidebar');
         const appContainer = document.querySelector('.app-container');
 
+        // INTERAKSI KONTROL MODAL EDIT
+        const editModal = document.getElementById('editPesananModal');
+        const closeBtn = document.querySelector('.close-modal-btn');
+        const formEdit = document.getElementById('formEditPesanan');
+        const modalSubtitle = document.getElementById('modal-sub-title');
+        const modalResi = document.getElementById('modal_no_resi');
+        const modalBuktiFile = document.getElementById('modal_bukti_kirim');
+
         sidebarToggle.addEventListener('click', function() {
             sidebar.classList.toggle('active');
             appContainer.classList.toggle('sidebar-open');
         });
 
-        // Close sidebar when clicking on a link
         const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
         sidebarLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -216,7 +216,6 @@
             });
         });
 
-        // Close sidebar when clicking outside
         document.addEventListener('click', function(event) {
             const isClickInsideSidebar = sidebar.contains(event.target);
             const isClickInsideToggle = sidebarToggle.contains(event.target);
@@ -224,6 +223,40 @@
             if (!isClickInsideSidebar && !isClickInsideToggle && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
                 appContainer.classList.remove('sidebar-open');
+            }
+        });
+
+        // Menangkap event klik tombol edit di tabel untuk mengisi form modal
+        document.querySelectorAll('.btn-edit').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const pelanggan = this.getAttribute('data-pelanggan');
+                const resi = this.getAttribute('data-resi');
+
+                // Mengganti target action form ke route update pemilik
+                formEdit.action = `/pemilik/pesanan/update/${id}`;
+
+                // Isi data teks ke komponen modal popup
+                modalSubtitle.innerText = `ID Checkout: #${id} | Pelanggan: ${pelanggan}`;
+                modalResi.value = (resi === '0' || resi === null) ? '' : resi;
+
+                // Reset file input setiap kali modal baru dibuka
+                modalBuktiFile.value = '';
+
+                // Tampilkan popup modal
+                editModal.style.display = 'block';
+            });
+        });
+
+        // Tutup modal saat klik tanda silang (X)
+        closeBtn.addEventListener('click', () => {
+            editModal.style.display = 'none';
+        });
+
+        // Tutup modal jika mengklik area luar box modal
+        window.addEventListener('click', (e) => {
+            if (e.target === editModal) {
+                editModal.style.display = 'none';
             }
         });
     </script>

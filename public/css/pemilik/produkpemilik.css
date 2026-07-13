@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-    --primary-red: #C81E38;
-    --primary-red-light: #FBEFF1;
-    --bg-color: #F8F9FA;
-    --sidebar-bg: #FFFFFF;
+    --primary-red: #c81e38;
+    --primary-red-light: #fbeff1;
+    --bg-color: #f8f9fa;
+    --sidebar-bg: #ffffff;
     --text-main: #111827;
-    --text-muted: #6B7280;
-    --border-color: #E5E7EB;
-    --cyan-border: #06B6D4;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --cyan-border: #06b6d4;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 body {
@@ -91,31 +91,78 @@ body {
     border-left: 4px solid var(--primary-red);
 }
 
-.sidebar-footer {
-    padding: 20px 24px;
+/* --- GANTI .sidebar-footer DENGAN INI --- */
+.sidebar-bottom {
     border-top: 1px solid var(--border-color);
+    background-color: var(--sidebar-bg);
+}
+
+.sidebar-profile {
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.sidebar-footer img {
+.sidebar-profile:hover {
+    background-color: #f3f4f6;
+}
+
+.sidebar-profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.sidebar-footer .user-info h4 {
-    font-size: 14px;
-    font-weight: 600;
+.sidebar-profile .user-info {
+    flex-grow: 1;
 }
 
-.sidebar-footer .user-info p {
+.sidebar-profile .user-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.sidebar-profile .user-info p {
     font-size: 12px;
     color: var(--text-muted);
 }
 
+/* Dropdown Logout sekarang tampil normal di bawah profil */
+.profile-dropdown {
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+}
+
+.btn-logout i {
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.btn-logout:hover {
+    background-color: var(--primary-red-light);
+}
 /* Main Content Styles */
 .main-content {
     margin-left: 260px;
@@ -149,13 +196,13 @@ body {
 }
 
 .hamburger-btn:hover {
-    background-color: #F3F4F6;
+    background-color: #f3f4f6;
 }
 
 .search-bar {
     display: flex;
     align-items: center;
-    background-color: #F3F4F6;
+    background-color: #f3f4f6;
     padding: 8px 16px;
     border-radius: 8px;
     width: 400px;
@@ -228,7 +275,7 @@ body {
     background: #fff;
     padding: 24px;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     position: relative;
 }
 
@@ -247,8 +294,14 @@ body {
     font-size: 18px;
 }
 
-.bg-red-light { background: #FBEFF1; color: var(--primary-red); }
-.bg-purple-light { background: #F3E8FF; color: #9333EA; }
+.bg-red-light {
+    background: #fbeff1;
+    color: var(--primary-red);
+}
+.bg-purple-light {
+    background: #f3e8ff;
+    color: #9333ea;
+}
 
 .badge-top-right {
     position: absolute;
@@ -260,8 +313,14 @@ body {
     font-weight: 600;
 }
 
-.badge-red { background: #FBEFF1; color: var(--primary-red); }
-.badge-purple { background: #F3E8FF; color: #9333EA; }
+.badge-red {
+    background: #fbeff1;
+    color: var(--primary-red);
+}
+.badge-purple {
+    background: #f3e8ff;
+    color: #9333ea;
+}
 
 .stat-card h3 {
     font-size: 12px;
@@ -292,7 +351,7 @@ body {
 .table-container {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .table-filters {
@@ -324,7 +383,7 @@ table {
 }
 
 th {
-    background: #F9FAFB;
+    background: #f9fafb;
     padding: 12px 24px;
     text-align: left;
     font-size: 12px;
@@ -351,7 +410,7 @@ td {
     height: 48px;
     border-radius: 8px;
     object-fit: cover;
-    background: #F3F4F6;
+    background: #f3f4f6;
 }
 
 .product-details h4 {
@@ -372,9 +431,18 @@ td {
     font-weight: 700;
 }
 
-.badge-workstation { background: #F3E8FF; color: #9333EA; }
-.badge-gaming { background: #FBEFF1; color: #DC2626; }
-.badge-portable { background: #E0F2FE; color: #0284C7; }
+.badge-workstation {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+.badge-gaming {
+    background: #fbeff1;
+    color: #dc2626;
+}
+.badge-portable {
+    background: #e0f2fe;
+    color: #0284c7;
+}
 
 .status-dot {
     display: inline-block;
@@ -384,12 +452,18 @@ td {
     margin-right: 8px;
 }
 
-.status-dot.tersedia { background: #10B981; }
-.status-dot.hampir-habis { background: #F59E0B; }
-.status-dot.habis { background: #EF4444; }
+.status-dot.tersedia {
+    background: #10b981;
+}
+.status-dot.hampir-habis {
+    background: #f59e0b;
+}
+.status-dot.habis {
+    background: #ef4444;
+}
 
 .action-btns button {
-    background: #F3F4F6;
+    background: #f3f4f6;
     border: none;
     width: 32px;
     height: 32px;
@@ -400,7 +474,7 @@ td {
 }
 
 .action-btns button:hover {
-    background: #E5E7EB;
+    background: #e5e7eb;
 }
 
 .table-footer {
@@ -537,7 +611,7 @@ td {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--text-main);
     outline: none;
     transition: border-color 0.3s ease;
@@ -585,12 +659,12 @@ td {
 }
 
 .btn-cancel {
-    background-color: #F3F4F6;
+    background-color: #f3f4f6;
     color: var(--text-main);
 }
 
 .btn-cancel:hover {
-    background-color: #E5E7EB;
+    background-color: #e5e7eb;
 }
 
 .btn-submit {
@@ -599,7 +673,7 @@ td {
 }
 
 .btn-submit:hover {
-    background-color: #A81530;
+    background-color: #a81530;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -637,7 +711,8 @@ td {
         width: 100%;
     }
 
-    th, td {
+    th,
+    td {
         padding: 12px 16px;
         font-size: 13px;
     }
@@ -655,7 +730,7 @@ td {
     justify-content: flex-start; /* Sejajarkan ke kiri, atau ubah 'center' jika ingin di tengah */
     flex-wrap: nowrap; /* Kunci rahasianya: Mencegah tombol turun ke baris baru */
     white-space: nowrap; /* Mencegah elemen di dalam sel tabel turun ke bawah */
-}   
+}
 
 /* Tablet - iPad Portrait (max-width: 768px) */
 @media (max-width: 768px) {
@@ -682,7 +757,7 @@ td {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         background-color: var(--sidebar-bg);
-        box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     }
 
     .sidebar.active {
@@ -758,7 +833,8 @@ td {
         margin-bottom: 8px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 12px 12px;
         font-size: 12px;
     }
@@ -883,21 +959,52 @@ td {
         font-size: 13px;
     }
 
+    /* Posisi relatif pada container footer agar dropdown mengikuti posisinya */
     .sidebar-footer {
-        padding: 12px 16px;
+        position: relative;
+        transition: background-color 0.2s ease;
     }
 
-    .sidebar-footer img {
-        width: 36px;
-        height: 36px;
+    .sidebar-footer:hover {
+        background-color: rgba(
+            0,
+            0,
+            0,
+            0.05
+        ); /* Sedikit efek gelap saat di-hover */
     }
 
-    .sidebar-footer .user-info h4 {
-        font-size: 12px;
+    /* Gaya kotak popup Logout */
+    .profile-dropdown {
+        position: absolute;
+        bottom: 110%; /* Muncul tepat di atas kotak profil */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        z-index: 999;
     }
 
-    .sidebar-footer .user-info p {
-        font-size: 11px;
+    /* Gaya tombol Logout */
+    .btn-logout {
+        width: 100%;
+        padding: 15px;
+        background: none;
+        border: none;
+        color: #ff4757; /* Warna merah untuk efek 'keluar' */
+        text-align: left;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.2s ease;
+    }
+
+    .btn-logout:hover {
+        background-color: #ffeef0; /* Latar merah pudar saat disentuh kursor */
     }
 
     .topbar {

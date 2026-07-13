@@ -28,18 +28,22 @@
                 <h1 class="">Selamat Datang</h1>
                 <p class="sub-header">Silakan masuk ke akun BOSLAPTOP Anda</p>
             </div>
-            <!-- Login Form -->
-            <form action="#" onsubmit="event.preventDefault();">
-                <!-- Email Field -->
-                <div class="mb-4">
+            @if ($errors->any())
+                <div class="alert alert-danger" style="width: 100%; border-radius: 8px;">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <form method="POST" action="{{ url('/login') }}">
+                @csrf <div class="mb-4">
                     <label class="form-label" for="email">
                         <span class="material-symbols-outlined" style="font-size: 18px;">alternate_email</span>
                         Email Address
                     </label>
-                    <input class="form-control" id="email" placeholder="nama@email.com" required=""
-                        type="email">
+                    <input class="form-control" id="email" name="email" placeholder="nama@email.com" required
+                        type="email" value="{{ old('email') }}">
                 </div>
-                <!-- Password Field -->
+
                 <div class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-1">
                         <label class="form-label mb-0" for="password">
@@ -49,19 +53,17 @@
                         <a class="forgot-link" href="#">Lupa Password?</a>
                     </div>
                     <div class="position-relative">
-                        <input class="form-control pe-5" id="password" placeholder="••••••••" required=""
+                        <input class="form-control pe-5" id="password" name="password" placeholder="••••••••" required
                             type="password">
                         <button class="input-group-text-btn" type="button">
                             <span class="material-symbols-outlined" style="font-size: 20px;">visibility_off</span>
                         </button>
                     </div>
                 </div>
-                <!-- Submit Button -->
-                <a href="#">
-                    <button class="btn btn-primary-custom" type="submit">
-                        Masuk
-                    </button>
-                </a>
+
+                <button class="btn btn-primary-custom w-100" type="submit">
+                    Masuk
+                </button>
             </form>
             <!-- Social Login / Divider -->
             <div class="divider-container">

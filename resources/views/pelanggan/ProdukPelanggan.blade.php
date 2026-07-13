@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/pelanggan/produkpelanggan.css') }}">
-    
-    
 </head>
+
 <body>
 
     @include('sidebar.sidebarpelanggan')
@@ -25,53 +25,108 @@
                     <i class="far fa-bell"></i>
                     <div class="badge"></div>
                 </div>
-                <div class="profile-info">
-                    <span>Pelanggan</span>
-                    <img src="https://ui-avatars.com/api/?name=Pelanggan&background=random" alt="Profile">
-                </div>
+
             </div>
         </div>
 
         <div class="filter-section">
-            <strong>Filter Kategori:</strong>
-            <select class="filter-select">
-                <option>Semua Kategori</option>
-                <option>Laptop</option>
-                <option>Aksesoris</option>
+            <strong>Filter Merk:</strong>
+            <select class="filter-select" id="merkFilter">
+                <option value="semua">Semua Merk</option>
+                <option value="asus">ASUS</option>
+                <option value="lenovo">Lenovo</option>
+                <option value="hp">HP</option>
+                <option value="acer">Acer</option>
+                <option value="msi">MSI</option>
+                <option value="apple">Apple</option>
             </select>
         </div>
 
         <div class="product-grid">
-            @php
-                $products = [
-                    ['title' => 'BosPro 16 Titanium', 'desc' => 'M2 Ultra, 64GB RAM, 1TB SSD', 'price' => 'Rp 42.500.000', 'badge' => 'Baru', 'badge_class' => 'badge-baru', 'icon' => 'fa-laptop'],
-                    ['title' => 'BosGaming X-100', 'desc' => 'RTX 4080, i9-13th Gen', 'price' => 'Rp 28.900.000', 'badge' => 'Terlaris', 'badge_class' => 'badge-terlaris', 'icon' => 'fa-gamepad'],
-                    ['title' => 'BosAir Ultrathin', 'desc' => 'Featherweight 1.1kg, 18h Battery', 'price' => 'Rp 19.200.000', 'badge' => '', 'badge_class' => '', 'icon' => 'fa-sun'],
-                    ['title' => 'BosPro Mouse V2', 'desc' => 'Wireless Ergonomic, 26k DPI', 'price' => 'Rp 850.000', 'badge' => '', 'badge_class' => '', 'icon' => 'fa-mouse'],
-                ];
-            @endphp
 
-            @for($i = 0; $i < 2; $i++)
-                @foreach($products as $item)
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        @if($item['badge'] != '')
-                            <span class="badge-status {{ $item['badge_class'] }}">{{ $item['badge'] }}</span>
-                        @endif
-                        <i class="fas {{ $item['icon'] }}"></i>
+            {{-- Looping data dari database --}}
+            @foreach ($products as $item)
+                <div class="product-card" data-merk="{{ strtolower(trim($item->merk)) }}">
+                    {{-- Modifikasi wrapper gambar agar menampilkan file foto dari DB --}}
+                    <div class="product-img-wrapper" style="background-color: transparent; border:none;">
+                        {{-- Asumsi gambar disimpan di storage/app/public/produk_images --}}
+                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}"
+                            style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
-                    <div class="product-title">{{ $item['title'] }}</div>
-                    <div class="product-desc">{{ $item['desc'] }}</div>
-                    <div class="product-price">{{ $item['price'] }}</div>
-                    <button class="btn-add-cart">
-                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
-                    </button>
+
+                    {{-- Memanggil kolom 'nama' dan 'merk' --}}
+                    <div class="product-title">{{ $item->merk }} {{ $item->nama }}</div>
+
+                    {{-- Memanggil kolom 'spesifikasi' dan dibatasi 40 karakter agar rapi --}}
+                    <div class="product-desc">{{ \Illuminate\Support\Str::limit($item->spesifikasi, 40) }}</div>
+
+                    {{-- Memanggil kolom 'harga' dengan format Rupiah --}}
+                    <div class="product-price">Rp {{ number_format($item->harga, 0, ',', '.') }}</div>
+
+                    <form action="{{ route('keranjang.tambah') }}" method="POST" style="margin-top: 15px;">
+                        @csrf
+                        <!-- Kirim ID Produk secara rahasia -->
+                        <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+
+                        <button type="submit" class="btn-add-cart">
+                            <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                        </button>
+                    </form>
                 </div>
-                @endforeach
-            @endfor
-            
+            @endforeach
+
         </div>
     </div>
+    {{-- SCRIPT UNTUK FILTER KATEGORI --}}
+    <script>
+        document.getElementById('merkFilter').addEventListener('change', function() {
+            // Ambil nilai filter, ubah ke huruf kecil, dan hapus spasi berlebih
+            let filterValue = this.value.toLowerCase().trim();
+
+            let products = document.querySelectorAll('.product-card');
+
+            products.forEach(function(card) {
+                // Ambil data-merk dari HTML, ubah ke huruf kecil, dan hapus spasi
+                let merkProduk = (card.getAttribute('data-merk') || '').toLowerCase().trim();
+
+                if (filterValue === 'semua') {
+                    card.style.display = 'block';
+                } else if (merkProduk === filterValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    {{-- TAMBAHKAN KODE INI UNTUK MENAMPILKAN ALERT --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Menangkap pesan sukses dari Controller
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000,
+                toast: true,
+                position: 'top-end' // Muncul di pojok kanan atas
+            });
+        @endif
+
+        // (Opsional) Menangkap pesan error jika ada
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ $errors->first() }}',
+                showConfirmButton: true,
+            });
+        @endif
+    </script>
 
 </body>
+
 </html>

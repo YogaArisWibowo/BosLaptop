@@ -12,6 +12,7 @@ class Pemilik extends Model
 
     protected $table = 'pemilik';
     protected $primaryKey = 'id_pemilik';
+    public $timestamps = true;
 
     // Sesuaikan fillable ini dengan struktur kolom tabel pemilik Anda
     protected $fillable = [

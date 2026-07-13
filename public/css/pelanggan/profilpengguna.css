@@ -96,3 +96,21 @@ body { background-color: var(--bg-body); display: flex; min-height: 100vh; }
 .new-location-box h4 { font-size: 15px; color: var(--text-dark); margin-bottom: 8px; font-weight: 600; }
 .new-location-box p { font-size: 13px; color: var(--text-gray); margin-bottom: 20px; }
 .btn-outline-purple { border: 1px solid var(--primary-purple); color: var(--primary-purple); background: white; padding: 12px 25px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+/* Tombol Simpan Alamat (Ungu) */
+.btn-save-purple {
+    width: 100%;
+    background: var(--primary-purple);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+
+.btn-save-purple:hover {
+    background: #5b21b6; /* Warna ungu yang sedikit lebih gelap saat disorot */
+}

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajemen Keuangan - BosLaptop</title>
-    
+
     <link rel="stylesheet" href="{{ asset('css/pemilik/produkpemilik.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pemilik/laporankeuanganpemilik.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
 </head>
-<body>
 
+<body>
     <div class="app-container">
         @include('sidebar.sidebarpemilik')
 
@@ -28,17 +28,19 @@
             </header>
 
             <div class="dashboard-content">
-                
-                @if(session('success'))
-                    <div style="background: #10b981; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+
+                @if (session('success'))
+                    <div
+                        style="background: #10b981; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                @if($errors->any())
-                    <div style="background: #f87171; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                @if ($errors->any())
+                    <div
+                        style="background: #f87171; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
                         <ul style="margin: 0; padding-left: 20px;">
-                            @foreach($errors->all() as $error)
+                            @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
@@ -65,7 +67,7 @@
                         <h3>PEMASUKAN</h3>
                         <div class="value">Rp {{ number_format($totalPemasukan ?? 0, 0, ',', '.') }}</div>
                     </div>
-                    
+
                     <div class="stat-card">
                         <div class="stat-icon bg-purple-light"><i class="fas fa-wallet"></i></div>
                         <h3>PENGELUARAN</h3>
@@ -75,7 +77,8 @@
                     <div class="stat-card">
                         <div class="stat-icon bg-blue-light"><i class="fas fa-money-bill-wave"></i></div>
                         <h3>TOTAL DANA</h3>
-                        <div class="value">Rp {{ number_format(($totalPemasukan ?? 0) - ($totalPengeluaran ?? 0), 0, ',', '.') }}</div>
+                        <div class="value">Rp
+                            {{ number_format(($totalPemasukan ?? 0) - ($totalPengeluaran ?? 0), 0, ',', '.') }}</div>
                     </div>
                 </div>
 
@@ -85,58 +88,85 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>KEUANGAN ID</th>
-                                <th>TANGGAL</th>
-                                <th>KATEGORI</th>
-                                <th>DESKRIPSI</th>
-                                <th class="text-right">NOMINAL</th>
-                                <th>STATUS</th>
-                                <th>AKSI</th>
+                                <th class="nowrap">KEUANGAN ID</th>
+                                <th class="nowrap">TANGGAL</th>
+                                <th class="nowrap">KATEGORI</th>
+                                <th class="nowrap">PENANGGUNG JAWAB</th>
+                                <th>DESKRIPSI</th> <!-- Deskripsi dibiarkan tanpa nowrap agar bisa turun baris -->
+                                <th class="text-right nowrap">NOMINAL</th>
+                                <th class="nowrap">STATUS</th>
+                                <th class="nowrap">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($keuangan as $item)
-                            <tr>
-                                <td><strong>#TRX-{{ $item->id_keuangan }}</strong></td>
-                                <td>{{ \Carbon\Carbon::parse($item->tanggal ?? $item->created_at)->format('M d, Y') }}</td>
-                                <td><span class="badge-gray">{{ strtoupper($item->jenis_transaksi) }}</span></td>
-                                <td>{{ $item->keterangan }}</td>
-                                <td class="text-right {{ in_array(strtolower($item->jenis_transaksi), ['sales', 'pemasukan']) ? 'text-green' : 'text-red' }}">
-                                    {{ in_array(strtolower($item->jenis_transaksi), ['sales', 'pemasukan']) ? '+' : '-' }} Rp {{ number_format($item->nominal, 0, ',', '.') }}
-                                </td>
-                                <td>
-                                    <span class="status-pill {{ strtolower($item->status ?? 'success') }}">
-                                        <span class="status-dot"></span> {{ ucfirst($item->status ?? 'Success') }}
-                                    </span>
-                                </td>
-                                <td class="action-btns" style="display: flex; gap: 5px;">
-                                    <button type="button" 
+                                <tr>
+                                    <td class="nowrap"><strong>#TRX-{{ $item->id_keuangan }}</strong></td>
+                                    <td class="nowrap">
+                                        {{ \Carbon\Carbon::parse($item->tanggal ?? $item->created_at)->format('M d, Y') }}
+                                    </td>
+                                    <td class="nowrap"><span
+                                            class="badge-gray">{{ strtoupper($item->jenis_transaksi) }}</span></td>
+
+                                    <td class="nowrap">
+                                        @if ($item->id_pemilik && $item->pemilik)
+                                            <span class="badge-blue"><i class="fas fa-user-tie"></i> Pemilik
+                                                ({{ $item->pemilik->nama ?? 'Unknown' }})</span>
+                                        @elseif($item->id_admin && $item->admin)
+                                            <span class="badge-purple"><i class="fas fa-user-shield"></i> Admin
+                                                ({{ $item->admin->nama ?? 'Unknown' }})</span>
+                                        @else
+                                            <span style="color: #999;">Sistem</span>
+                                        @endif
+                                    </td>
+
+                                    <td class="col-deskripsi">{{ $item->keterangan }}</td>
+
+                                    <td
+                                        class="text-right nowrap {{ in_array(strtolower($item->jenis_transaksi), ['sales', 'pemasukan']) ? 'text-green' : 'text-red' }}">
+                                        {{ in_array(strtolower($item->jenis_transaksi), ['sales', 'pemasukan']) ? '+' : '-' }}
+                                        Rp {{ number_format($item->nominal, 0, ',', '.') }}
+                                    </td>
+
+                                    <td class="nowrap">
+                                        <span class="status-pill {{ strtolower($item->status ?? 'success') }}">
+                                            <span class="status-dot"></span> {{ ucfirst($item->status ?? 'Success') }}
+                                        </span>
+                                    </td>
+
+                                    <td class="action-btns">
+                                        <button type="button" class="btn-action btn-edit"
                                             data-id="{{ $item->id_keuangan }}"
-                                            data-tanggal="{{ \Carbon\Carbon::parse($item->tanggal ?? $item->created_at)->format('Y-m-row') }}"
+                                            data-tanggal="{{ \Carbon\Carbon::parse($item->tanggal ?? $item->created_at)->format('Y-m-d') }}"
                                             data-jenis="{{ $item->jenis_transaksi }}"
                                             data-nominal="{{ $item->nominal }}"
                                             data-keterangan="{{ $item->keterangan }}"
                                             data-status="{{ $item->status ?? 'Success' }}"
                                             onclick="openEditModal(this)">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
+                                            <i class="fas fa-pen"></i>
+                                        </button>
 
-                                    <form action="{{ route('keuangan.hapus', $item->id_keuangan) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus laporan ini?');" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" style="color: red;"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
+                                        <form action="{{ route('keuangan.hapus', $item->id_keuangan) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus laporan ini?');"
+                                            style="margin:0;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-action btn-delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="7" style="text-align: center;">Belum ada data laporan keuangan.</td>
-                            </tr>
+                                <tr>
+                                    <td colspan="8" style="text-align: center; padding: 20px;">Belum ada data laporan
+                                        keuangan.</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
 
-                    @if($keuangan instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                    @if ($keuangan instanceof \Illuminate\Pagination\LengthAwarePaginator)
                         <div class="table-footer">
                             <span>Tampil {{ $keuangan->count() }} dari {{ $keuangan->total() }} Transaksi</span>
                             <div class="pagination">
@@ -150,11 +180,13 @@
         </main>
     </div>
 
+    <!-- Modal Tambah Keuangan -->
     <div class="modal" id="addFinanceModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Tambah Laporan Keuangan</h2>
-                <button class="modal-close" onclick="closeModal('addFinanceModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="closeModal('addFinanceModal')"><i
+                        class="fas fa-times"></i></button>
             </div>
             <form action="{{ route('keuangan.tambah') }}" method="POST">
                 @csrf
@@ -165,10 +197,8 @@
                 <div class="form-group">
                     <label>Kategori / Jenis Transaksi</label>
                     <select name="jenis_transaksi" required>
-                        <option value="SALES">SALES (Pemasukan)</option>
-                        <option value="INVENTORY">INVENTORY (Pengeluaran)</option>
-                        <option value="MARKETING">MARKETING (Pengeluaran)</option>
-                        <option value="REFUND">REFUND (Pengeluaran)</option>
+                        <option value="Pemasukan">Pemasukan</option>
+                        <option value="Pengeluaran">Pengeluaran</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -195,11 +225,13 @@
         </div>
     </div>
 
+    <!-- Modal Edit Keuangan -->
     <div class="modal" id="editFinanceModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Edit Laporan Keuangan</h2>
-                <button class="modal-close" onclick="closeModal('editFinanceModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="closeModal('editFinanceModal')"><i
+                        class="fas fa-times"></i></button>
             </div>
             <form id="formEditKeuangan" method="POST">
                 @csrf
@@ -211,10 +243,8 @@
                 <div class="form-group">
                     <label>Kategori / Jenis Transaksi</label>
                     <select name="jenis_transaksi" id="edit_jenis" required>
-                        <option value="SALES">SALES</option>
-                        <option value="INVENTORY">INVENTORY</option>
-                        <option value="MARKETING">MARKETING</option>
-                        <option value="REFUND">REFUND</option>
+                        <option value="Pemasukan">Pemasukan</option>
+                        <option value="Pengeluaran">Pengeluaran</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -241,11 +271,13 @@
         </div>
     </div>
 
+    <!-- Modal Download PDF -->
     <div class="modal" id="downloadReportModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Unduh Laporan Keuangan</h2>
-                <button class="modal-close" onclick="closeModal('downloadReportModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="closeModal('downloadReportModal')"><i
+                        class="fas fa-times"></i></button>
             </div>
             <form action="{{ route('keuangan.cetak') }}" method="GET" target="_blank">
                 <div class="form-group">
@@ -268,25 +300,24 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel" onclick="closeModal('downloadReportModal')">Batal</button>
-                    <button type="submit" class="btn-submit" style="background: #10b981;"><i class="fas fa-download"></i> Unduh PDF</button>
+                    <button type="button" class="btn-cancel"
+                        onclick="closeModal('downloadReportModal')">Batal</button>
+                    <button type="submit" class="btn-submit" style="background: #10b981;"><i
+                            class="fas fa-download"></i> Unduh PDF</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // Membuka Modal berdasarkan ID elemen
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
         }
 
-        // Menutup Modal berdasarkan ID elemen
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
         }
 
-        // Mengatur pembukaan modal edit secara dinamis beserta pengisian datanya
         function openEditModal(button) {
             let id = button.getAttribute('data-id');
             let tanggal = button.getAttribute('data-tanggal');
@@ -295,18 +326,18 @@
             let keterangan = button.getAttribute('data-keterangan');
             let status = button.getAttribute('data-status');
 
-            // Pengisian nilai form modal edit
             document.getElementById('edit_tanggal').value = tanggal;
-            document.getElementById('edit_jenis').value = jenis.toUpperCase();
+            // .toUpperCase() dihapus agar terbaca "Pemasukan"/"Pengeluaran"
+            document.getElementById('edit_jenis').value = jenis;
             document.getElementById('edit_nominal').value = nominal;
             document.getElementById('edit_keterangan').value = keterangan;
             document.getElementById('edit_status').value = status;
 
-            // Integrasi URL action update Laravel
             document.getElementById('formEditKeuangan').action = `/laporankeuanganpemilik/edit/${id}`;
 
             openModal('editFinanceModal');
         }
     </script>
 </body>
+
 </html>

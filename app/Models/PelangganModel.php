@@ -11,12 +11,18 @@ class PelangganModel extends Model
 
     protected $table = 'pelanggan';
     protected $primaryKey = 'id_pelanggan';
-    
+    public $timestamps = true;
+
     protected $fillable = [
         'nama',
         'email',
         'password',
         'no_hp',
         'alamat',
+    ];
+
+    // Mengubah kolom tipe text menjadi array (JSON) secara otomatis
+    protected $casts = [
+        'alamat' => 'array',
     ];
 }

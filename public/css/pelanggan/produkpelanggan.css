@@ -31,6 +31,8 @@ body {
     height: 100vh;
     left: 0;
     top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-header {
@@ -79,6 +81,82 @@ body {
     background-color: #fff0f2;
     border-left: 4px solid var(--primary-red);
     padding-left: 21px; /* Adjusting for border */
+}
+
+/* --- SIDEBAR FOOTER & LOGOUT --- */
+.sidebar-bottom {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-sidebar);
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar-profile:hover {
+    background-color: #f8f9fc;
+}
+
+.sidebar-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-info h4 {
+    font-size: 14px;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 600;
+}
+
+.user-info p {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* Dropdown Logout sekarang tampil normal di bawah profil */
+.profile-dropdown {
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: var(--primary-red);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-logout i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.btn-logout:hover {
+    background-color: #fff0f2;
 }
 
 /* --- MAIN CONTENT STYLES --- */

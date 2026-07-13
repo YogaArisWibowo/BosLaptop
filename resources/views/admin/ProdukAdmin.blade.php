@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/produkadmin.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <div class="app-container">
@@ -14,13 +16,12 @@
 
         <main class="main-content">
             <header class="topbar">
-                <button class="hamburger-btn" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button class="hamburger-btn" id="sidebarToggle"><i class="fas fa-bars"></i></button>
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Cari komponen, Produk, DLL...">
                 </div>
+
                 <div class="topbar-icons">
                     <i class="far fa-bell"></i>
                     <i class="far fa-question-circle"></i>
@@ -28,6 +29,23 @@
             </header>
 
             <div class="dashboard-content">
+                @if($errors->any())
+                <div style="background: #f87171; color: white; padding: 15px; border-radius: 5px; margin-bottom: 15px;">
+                    <strong style="display: block; margin-bottom: 5px;">Waduh, Data Gagal Disimpan:</strong>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                @if(session('success'))
+                <div style="background: #10b981; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    {{ session('success') }}
+                </div>
+                @endif
+
                 <div class="page-header">
                     <div>
                         <h1>Manajemen Produk</h1>
@@ -38,268 +56,173 @@
                     </button>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon bg-red-light">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <span class="badge-top-right badge-red">+12%</span>
-                        <h3>PRODUK TERSEDIA</h3>
-                        <div class="value">1,284 Unit</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon bg-purple-light">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <span class="badge-top-right badge-purple">LIVE</span>
-                        <h3>Daftar Aktif</h3>
-                        <div class="value">942 Pro</div>
-                    </div>
-
-                    <div class="stat-card system-perf">
-                        <h3>Sistem Sinkronisasi </h3>
-                        <p>inventaris secara real-time aktif di seluruh pusat data global</p>
-                    </div>
-                </div>
-
                 <div class="table-container">
-                    <div class="table-filters">
-                        <div class="filter-group">
-                            <select>
-                                <option>Filter: Semua Kategori</option>
-                            </select>
-                            <select>
-                                <option>Status: All</option>
-                            </select>
-                        </div>
-                        <span class="filter-info">Tampil 1-10 dari 128 produk</span>
-                    </div>
-
                     <table>
                         <thead>
                             <tr>
                                 <th>NAMA</th>
-                                <th>KATEGORI</th>
+                                <th>MERK</th>
                                 <th>HARGA</th>
-                                <th>STOK</th>
-                                <th>STATUS</th>
+                                <th>SPEK</th>
                                 <th>AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse($produk as $item)
                             <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
+                                        @if($item->gambar)
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="Laptop" style="width: 48px; height: 48px; object-fit: cover; border-radius: 4px;">
+                                        @else
+                                        <img src="https://via.placeholder.com/48" alt="Laptop" style="border-radius: 4px;">
+                                        @endif
                                         <div class="product-details">
-                                            <h4>BosMaster Pro X15</h4>
-                                            <span>SKU: BM-PX15-2024</span>
+                                            <h4>{{ $item->nama }}</h4>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$2,499.00</strong></td>
-                                <td>42<br><small style="color:#6b7280;">Unit</small></td>
-                                <td><span class="status-dot tersedia"></span> Tersedia</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
+                                <td><span class="badge badge-workstation">{{ strtoupper($item->merk) }}</span></td>
+                                <td><strong>Rp {{ number_format($item->harga, 0, ',', '.') }}</strong></td>
+                                <td>{{ Str::limit($item->speksifikasi, 30) }}</td>
+                                <td class="action-btns" style="display: flex; gap: 5px;">
+
+                                    <button type="button" class="btn-edit"
+                                        data-id="{{ $item->id_produk }}"
+                                        data-nama="{{ $item->nama }}"
+                                        data-merk="{{ $item->merk }}"
+                                        data-harga="{{ $item->harga }}"
+                                        data-speksifikasi="{{ $item->speksifikasi }}"
+                                        onclick="openEditModal(this)">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+
+                                    <form action="{{ route('produk.hapus.admin', $item->id_produk) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="color: red;"><i class="fas fa-trash"></i></button>
+                                    </form>
+
                                 </td>
                             </tr>
+                            @empty
                             <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>HyperBlade Elite</h4>
-                                            <span>SKU: HB-ELT14-BLK</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-gaming">GAMING</span></td>
-                                <td><strong>$1,899.00</strong></td>
-                                <td>12<br><small style="color:#6b7280;">Unit</small></td>
-                                <td><span class="status-dot hampir-habis"></span> Hampir habis</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
+                                <td colspan="5" style="text-align: center;">Belum ada produk.</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>AeroAir Ultrabook</h4>
-                                            <span>SKU: AA-ULT13-WHT</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-portable">PORTABLE</span></td>
-                                <td><strong>$1,250.00</strong></td>
-                                <td>0<br><small style="color:#6b7280;">Unit</small></td>
-                                <td><span class="status-dot habis"></span> Habis</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="https://via.placeholder.com/48" alt="Laptop">
-                                        <div class="product-details">
-                                            <h4>Titan Studio Z</h4>
-                                            <span>SKU: TS-Z17-CREATOR</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="badge badge-workstation">WORKSTATION</span></td>
-                                <td><strong>$3,199.00</strong></td>
-                                <td>18<br><small style="color:#6b7280;">Unit</small></td>
-                                <td><span class="status-dot tersedia"></span> Tersedia</td>
-                                <td class="action-btns">
-                                    <button><i class="fas fa-pen"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
-
-                    <div class="table-footer">
-                        <span>Tampil 10 dari 128 Transaksi</span>
-                        <div class="pagination">
-                            <button><i class="fas fa-chevron-left"></i></button>
-                            <button class="active">1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </main>
     </div>
 
-    <!-- Modal Tambah Produk -->
     <div class="modal" id="addProductModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Tambah Produk Baru</h2>
-                <button class="modal-close" id="closeModalBtn">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button class="modal-close" onclick="closeModal('addProductModal')"><i class="fas fa-times"></i></button>
             </div>
-            <form class="modal-form">
+            <form action="{{ route('produk.tambah.admin') }}" method="POST" enctype="multipart/form-data" class="modal-form">
+                @csrf
                 <div class="form-group">
-                    <label for="productName">Nama Produk</label>
-                    <input type="text" id="productName" placeholder="Masukkan nama produk" required>
+                    <label>Gambar Produk</label>
+                    <input type="file" name="gambar" accept="image/*" required>
                 </div>
-
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" name="nama" placeholder="Masukkan nama produk" required>
+                </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="productCategory">Kategori</label>
-                        <select id="productCategory" required>
-                            <option value="">Pilih Kategori</option>
-                            <option value="workstation">Workstation</option>
-                            <option value="gaming">Gaming</option>
-                            <option value="portable">Portable</option>
-                        </select>
+                        <label>Merk</label>
+                        <input type="text" name="merk" placeholder="Contoh: Asus, Lenovo" required>
                     </div>
                     <div class="form-group">
-                        <label for="productPrice">Harga</label>
-                        <input type="number" id="productPrice" placeholder="Masukkan harga" required>
+                        <label>Harga</label>
+                        <input type="number" name="harga" placeholder="Masukkan harga" required>
                     </div>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="productStock">Stok</label>
-                        <input type="number" id="productStock" placeholder="Masukkan jumlah stok" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productSKU">SKU</label>
-                        <input type="text" id="productSKU" placeholder="Masukkan SKU" required>
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label for="productDescription">Deskripsi</label>
-                    <textarea id="productDescription" placeholder="Masukkan deskripsi produk" rows="4"></textarea>
+                    <label>Spesifikasi (Deskripsi)</label>
+                    <textarea name="speksifikasi" placeholder="Masukkan spesifikasi produk" rows="4" required></textarea>
                 </div>
-
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel" id="cancelBtn">Batal</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal('addProductModal')">Batal</button>
                     <button type="submit" class="btn-submit">Simpan Produk</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <div class="modal" id="editProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Produk</h2>
+                <button class="modal-close" onclick="closeModal('editProductModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="formEditProduk" method="POST" enctype="multipart/form-data" class="modal-form">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label>Ganti Gambar Produk <span style="color: #6b7280; font-size: 12px;">(Kosongkan jika tidak ingin diubah)</span></label>
+                    <input type="file" name="gambar" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" name="nama" id="edit_nama" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Merk</label>
+                        <input type="text" name="merk" id="edit_merk" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input type="number" name="harga" id="edit_harga" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Spesifikasi (Deskripsi)</label>
+                    <textarea name="speksifikasi" id="edit_speksifikasi" rows="4" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" onclick="closeModal('editProductModal')">Batal</button>
+                    <button type="submit" class="btn-submit">Update Produk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.querySelector('.sidebar');
-        const appContainer = document.querySelector('.app-container');
+        // Modal Control Helper
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
 
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            appContainer.classList.toggle('sidebar-open');
+        // Buka Modal Tambah
+        document.getElementById('addProductBtn').addEventListener('click', function() {
+            document.getElementById('addProductModal').classList.add('active');
         });
 
-        // Close sidebar when clicking on a link
-        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-                appContainer.classList.remove('sidebar-open');
-            });
-        });
+        // Buka Modal Edit & Isi Data secara Dinamis
+        function openEditModal(button) {
+            let id = button.getAttribute('data-id');
+            let nama = button.getAttribute('data-nama');
+            let merk = button.getAttribute('data-merk');
+            let harga = button.getAttribute('data-harga');
+            let spek = button.getAttribute('data-speksifikasi');
 
-        // Close sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideSidebar = sidebar.contains(event.target);
-            const isClickInsideToggle = sidebarToggle.contains(event.target);
+            document.getElementById('edit_nama').value = nama;
+            document.getElementById('edit_merk').value = merk;
+            document.getElementById('edit_harga').value = harga;
+            document.getElementById('edit_speksifikasi').value = spek;
 
-            if (!isClickInsideSidebar && !isClickInsideToggle && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                appContainer.classList.remove('sidebar-open');
-            }
-        });
+            // URL disesuaikan dengan route utama baru kamu yaitu /produkpemilik
+            document.getElementById('formEditProduk').action = `/produkadmin/edit/${id}`;
 
-        // Modal functionality
-        const addProductBtn = document.getElementById('addProductBtn');
-        const addProductModal = document.getElementById('addProductModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-
-        addProductBtn.addEventListener('click', function() {
-            addProductModal.classList.add('active');
-        });
-
-        closeModalBtn.addEventListener('click', function() {
-            addProductModal.classList.remove('active');
-        });
-
-        cancelBtn.addEventListener('click', function() {
-            addProductModal.classList.remove('active');
-        });
-
-        // Close modal when clicking outside
-        addProductModal.addEventListener('click', function(event) {
-            if (event.target === addProductModal) {
-                addProductModal.classList.remove('active');
-            }
-        });
-
-        // Handle form submission
-        document.querySelector('.modal-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Produk berhasil ditambahkan!');
-            addProductModal.classList.remove('active');
-            this.reset();
-        });
+            document.getElementById('editProductModal').classList.add('active');
+        }
     </script>
 </body>
 

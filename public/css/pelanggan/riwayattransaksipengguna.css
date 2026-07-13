@@ -34,19 +34,96 @@ body {
     border-right: 1px solid var(--border-color);
     position: fixed;
     height: 100vh;
-    padding: 30px 0;
+    left: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
 }
 
-.logo-container {
-    padding: 0 24px 40px;
-    text-align: center;
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.logo-container img {
-    max-width: 160px;
+.sidebar-logo {
+    max-width: 150px;
     height: auto;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    background-color: #fff;
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar-profile:hover {
+    background-color: #f8f9fc;
+}
+
+.sidebar-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-info h4 {
+    font-size: 14px;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 600;
+}
+
+.user-info p {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.profile-dropdown {
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: var(--primary-red);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-logout:hover {
+    background: #fff0f2;
+}
+
+.btn-logout i {
+    margin-right: 10px;
 }
 
 .sidebar-menu {
@@ -62,14 +139,15 @@ body {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
     transition: all 0.2s;
 }
 
 .sidebar-menu li.active a {
     color: var(--primary-red);
     background-color: #fff1f2;
-    border-right-color: var(--primary-red);
+    border-left-color: var(--primary-red);
+    padding-left: 21px;
     font-weight: 600;
 }
 
